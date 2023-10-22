@@ -2,6 +2,8 @@
 
 public static class HanoiTower
 {
+    public const int POLES_COUNT = 3;
+
     /// <summary>
     /// Solves Tower of Hanoi.
     /// </summary>
@@ -14,9 +16,9 @@ public static class HanoiTower
     {
         if (diskCount == 0)
             throw new ArgumentOutOfRangeException(nameof(diskCount));
-        else if (originPole > 2)
+        else if (originPole >= POLES_COUNT)
             throw new ArgumentOutOfRangeException(nameof(originPole));
-        else if (destinationPole > 2)
+        else if (destinationPole >= POLES_COUNT)
             throw new ArgumentOutOfRangeException(nameof(destinationPole));
 
         uint steps = 1;
@@ -35,7 +37,7 @@ public static class HanoiTower
     {
         if (originPole != destinationPole)
         {
-            uint remainingPole = 3 - originPole - destinationPole;
+            uint remainingPole = POLES_COUNT - originPole - destinationPole;
 
             if (diskCount != 1)
                 index = InternalSolve(diskCount - 1, originPole, remainingPole, result, index);
